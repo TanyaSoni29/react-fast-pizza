@@ -41,32 +41,32 @@ function CreateOrder() {
       <form>
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input type='text' name='customer' required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type='tel' name='phone' required />
           </div>
         </div>
 
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input type='text' name='address' required />
           </div>
         </div>
 
         <div>
           <input
-            type="checkbox"
-            name="priority"
-            id="priority"
+            type='checkbox'
+            name='priority'
+            id='priority'
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor='priority'>Want to yo give your order priority?</label>
         </div>
 
         <div>
