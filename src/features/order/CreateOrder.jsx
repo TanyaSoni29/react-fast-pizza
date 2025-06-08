@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Form } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -38,7 +40,8 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Let's go!</h2>
 
-      <form>
+      {/* <Form method="POST" action="/order/new"> we can give action or leave it as below react router by default simply match with the closest route by doing this it will not work now we have to give action so similarly as loader below we write action function */}
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type='text' name='customer' required />
@@ -72,9 +75,21 @@ function CreateOrder() {
         <div>
           <button>Order now</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
+}
+// when you are using this Form from react router then have you remember basic html form is also submitted like this 
+
+export async function action({request}) { // as per the convention we have given the name of function is action as shown we submit the form it would create a request which intercepted the this action as shown as it connnected with react router as shown as the form submited this action have a request which can be aceess as props 
+  const formData = await request.formData(); // here this .formData is provided by the browser
+  const data = Object.fromEntries(formData); // for the conversion of form Data to json
+  console.log(data); // and final step connect this action to the route in the App.jsx
+
+
+  return null;
+
+
 }
 
 export default CreateOrder;
