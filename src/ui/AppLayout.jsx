@@ -12,9 +12,11 @@ export default function AppLayout() {
       {isLoading && <Loader />}
       <Header />
       {/* we want to scroll the main content not overall scroll */}
-      <main className="overflow-scroll">
-        <Outlet />
-      </main>
+      <div className="overflow-scroll">
+        <main className="mx-auto max-w-3xl">
+          <Outlet />
+        </main>
+      </div>
       <CartOverview />
     </div>
   );
