@@ -1,19 +1,21 @@
-import { Outlet, useNavigation } from "react-router-dom";
-import CartOverview from "../features/cart/CartOverview";
-import Header from "./Header";
-import Loader from "./Loader";
+import { Outlet, useNavigation } from 'react-router-dom';
+import CartOverview from '../features/cart/CartOverview';
+import Header from './Header';
+import Loader from './Loader';
 
 export default function AppLayout() {
-    const navigation = useNavigation();
-    console.log(navigation);
-    const isLoading = navigation.state === "loading";
+  const navigation = useNavigation();
+  console.log(navigation);
+  const isLoading = navigation.state === 'loading';
   return (
-    <div className="layout">
-    {isLoading && <Loader />}
+    <div className="grid h-screen grid-cols-1 grid-rows-[auto_1fr_auto]">
+      {isLoading && <Loader />}
       <Header />
-      <main>
-      <Outlet /></main>
+      {/* we want to scroll the main content not overall scroll */}
+      <main className="overflow-scroll">
+        <Outlet />
+      </main>
       <CartOverview />
     </div>
-  )
+  );
 }
