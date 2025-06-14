@@ -40,37 +40,42 @@ function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Let's go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
 
       {/* <Form method="POST" action="/order/new"> we can give action or leave it as below react router by default simply match with the closest route by doing this it will not work now we have to give action so similarly as loader below we write action function */}
       <Form method="POST">
-        <div>
-          <label>First Name</label>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          {/* due flex we use this basis property to give enough space to label */}
+          <label className="sm:basis-40">First Name</label>
           <input
             type="text"
             name="customer"
             required
-            className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-yellow-400 focus:outline-none md:px-6 md:py-3"
+            className="grow rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-yellow-400 focus:outline-none md:px-6 md:py-3"
           />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
             <input
               type="tel"
               name="phone"
               required
               className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-yellow-400 focus:outline-none md:px-6 md:py-3"
             />
+            {formErrors?.phone && (
+              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+                {formErrors?.phone}
+              </p>
+            )}
           </div>
-          {formErrors.phone && <p>{formErrors.phone}</p>}
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
             <input
               type="text"
               name="address"
@@ -80,7 +85,7 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div>
+        <div className="mb-12 flex items-center gap-5">
           <input
             className="h-6 w-6 accent-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-offset-2 focus:outline-none"
             type="checkbox"
@@ -89,7 +94,9 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority" className="font-medium">
+            Want to yo give your order priority?
+          </label>
         </div>
 
         <div>
@@ -102,7 +109,7 @@ function CreateOrder() {
             {isSubmitting ? 'Placing Order...' : 'Order now'}
           </button> 
           in this way we can create component and reuse the same style */}
-          <Button disabled={isSubmitting}>
+          <Button disabled={isSubmitting} type="primary">
             {isSubmitting ? 'Placing Order...' : 'Order now'}
           </Button>
         </div>
@@ -126,7 +133,7 @@ export async function action({ request }) {
 
   // data validation inside the action can also be done before placing the order or after placing the order
   const errors = {};
-  if (!isValidPhone(order.phone))
+  if (!isValidPhone(order?.phone))
     errors.phone =
       'Please give us your correct phone number. We might need it to contact you.'; // and now we can say if error object contain any error the we want to return the error object in the createOrder component
   if (Object.keys(errors).length > 0) return errors;
