@@ -5,3 +5,4 @@ export default function Loader() {
     </div>
   );
 }
+// in this way we create and design the global loader
