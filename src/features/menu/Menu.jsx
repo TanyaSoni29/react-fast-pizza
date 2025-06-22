@@ -4,7 +4,6 @@ import MenuItem from './MenuItem';
 
 function Menu() {
   const menu = useLoaderData(); // custom hook to access data from loader function which is provided to the route
-  console.log(menu);
   return (
     // divide class used to divide the children through a line so we write this to parent element it is similar as space-x or space-y
     <ul className="divide-y divide-stone-200 px-2">

@@ -45,3 +45,5 @@ const router = createBrowserRouter([
 export default function App() {
   return <RouterProvider router={router} />;
 }
+
+// for the addition of Redux to manage user global ui states we will at first install the @reduxjs/toolkit react-redux
