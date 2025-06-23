@@ -29,7 +29,7 @@ const cartSlice = createSlice({
       if (item.quantity === 0) cartSlice.caseReducers.removeItem(state, action);
     },
     clearCart(state) {
-      state.cart = initialState;
+      state.cart = [];
     },
   },
 });
